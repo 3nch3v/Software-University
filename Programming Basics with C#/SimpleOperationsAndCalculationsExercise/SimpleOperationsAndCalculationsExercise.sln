@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USDtoBGN", "USDtoBGN\USDtoBGN.csproj", "{2322B863-016E-41A7-A800-22D0D1D0F38B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadiansToDegrees", "RadiansToDegrees\RadiansToDegrees.csproj", "{72CB656C-867E-4F49-BB43-C549269D5456}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DRectangleArea", "2DRectangleArea\2DRectangleArea.csproj", "{FB9226A6-C400-4C82-AA0F-B12AFE449690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanceHall", "DanceHall\DanceHall.csproj", "{21CF4609-4A4E-431A-A623-9D80361B0BF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlcoholMarket", "AlcoholMarket\AlcoholMarket.csproj", "{C024CB95-49AC-4C9C-89B2-EE0C461074F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharityCampaign", "CharityCampaign\CharityCampaign.csproj", "{D5F5C9A2-75A6-4835-BB8A-4AB43CFCA293}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2322B863-016E-41A7-A800-22D0D1D0F38B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2322B863-016E-41A7-A800-22D0D1D0F38B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2322B863-016E-41A7-A800-22D0D1D0F38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2322B863-016E-41A7-A800-22D0D1D0F38B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72CB656C-867E-4F49-BB43-C549269D5456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CB656C-867E-4F49-BB43-C549269D5456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CB656C-867E-4F49-BB43-C549269D5456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CB656C-867E-4F49-BB43-C549269D5456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB9226A6-C400-4C82-AA0F-B12AFE449690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB9226A6-C400-4C82-AA0F-B12AFE449690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB9226A6-C400-4C82-AA0F-B12AFE449690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB9226A6-C400-4C82-AA0F-B12AFE449690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21CF4609-4A4E-431A-A623-9D80361B0BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21CF4609-4A4E-431A-A623-9D80361B0BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21CF4609-4A4E-431A-A623-9D80361B0BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21CF4609-4A4E-431A-A623-9D80361B0BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C024CB95-49AC-4C9C-89B2-EE0C461074F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C024CB95-49AC-4C9C-89B2-EE0C461074F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C024CB95-49AC-4C9C-89B2-EE0C461074F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C024CB95-49AC-4C9C-89B2-EE0C461074F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5F5C9A2-75A6-4835-BB8A-4AB43CFCA293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5F5C9A2-75A6-4835-BB8A-4AB43CFCA293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5F5C9A2-75A6-4835-BB8A-4AB43CFCA293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5F5C9A2-75A6-4835-BB8A-4AB43CFCA293}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {608631FD-BE23-42BE-8248-B88EE252D4FF}
+	EndGlobalSection
+EndGlobal
