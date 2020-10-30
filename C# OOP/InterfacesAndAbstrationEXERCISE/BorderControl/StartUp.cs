@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BorderControl
 {
@@ -7,42 +8,52 @@ namespace BorderControl
     {
         static void Main(string[] args)
         {
-            List<IIdentifiable> data = new List<IIdentifiable>();
+            int peopleCount = int.Parse(Console.ReadLine());
 
-            string input;
+            List<IBuyer> data = new List<IBuyer>();
 
-            while ((input = Console.ReadLine()) != "End")
+            for (int i = 0; i < peopleCount; i++)
             {
-                string[] currArgs = input.Split();
+                string[] currPerson = Console.ReadLine().Split();
 
-                if (currArgs.Length == 3)
+                if (currPerson.Length == 4)
                 {
-                    string name = currArgs[0];
-                    int age = int.Parse(currArgs[1]);
-                    string id = currArgs[2];
-                    Citizen citizen = new Citizen(name, age, id);
-                    data.Add(citizen);
+                    string name = currPerson[0];
+                    int age = int.Parse(currPerson[1]);
+                    string id = currPerson[2];
+                    string birthdate = currPerson[3];
+
+                    data.Add(new Citizen(name, age, id, birthdate));
                 }
 
-                else
+                else if (currPerson.Length == 3)
                 {
-                    string model = currArgs[0];
-                    string id = currArgs[1];
+                    string name = currPerson[0];
+                    int age = int.Parse(currPerson[1]);
+                    string group = currPerson[2];
 
-                    Robot robot = new Robot(model, id);
-                    data.Add(robot);
+                    data.Add(new Rebel(name, age, group));
                 }
             }
 
-            string fakeId = Console.ReadLine();
+            string comand;
 
-            foreach (var item in data)
+            while ((comand = Console.ReadLine()) != "End")
             {
-                if (item.Id.EndsWith(fakeId))
+                if (data.Any(p => p.Name == comand))
                 {
-                    Console.WriteLine(item.Id);
+                   data.FirstOrDefault(p => p.Name == comand).BuyFood();
                 }
             }
+
+            int food = 0;
+
+            foreach (var person in data)
+            {
+                food += person.Food;
+            }
+
+            Console.WriteLine(food);
         }
     }
 }

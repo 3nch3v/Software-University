@@ -1,27 +1,27 @@
 ﻿
 namespace BorderControl
 {
-    public class Citizen : IIdentifiable, IPersonable, IBuyer
+    public class Rebel : IBuyer
     {
         private const int InitialFood = 0;
 
-        public Citizen(string name, int age, string id, string birthdate)
+        public Rebel(string name, int age, string group)
         {
             this.Name = name;
             this.Age = age;
-            this.Id = id;
-            this.Birthdate = birthdate;
+            this.Group = group;
             this.Food = InitialFood;
         }
+
         public string Name { get; set; }
-        public string Birthdate { get; set; }
         public int Age { get; set; }
-        public string Id { get; set; }
+        public string Group { get; set; }
         public int Food { get; set; }
+
 
         public void BuyFood()
         {
-            this.Food += 10;
+            this.Food += 5;
         }
     }
 }
