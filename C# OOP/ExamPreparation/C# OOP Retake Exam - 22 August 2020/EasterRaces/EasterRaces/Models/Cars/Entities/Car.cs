@@ -8,6 +8,8 @@ namespace EasterRaces.Models.Cars.Entities
 {
     public abstract class Car : ICar
     {
+        private const int MIN_MODEL_LENGTH = 5;
+
         private string model;
         private int horsePower;
 
@@ -24,15 +26,14 @@ namespace EasterRaces.Models.Cars.Entities
             CubicCentimeters = cubicCentimeters;
         }
 
-        
         public string Model
         {
             get => model;
             private set
             {
-                if (string.IsNullOrWhiteSpace(value) || value.Length < 4)
+                if (string.IsNullOrWhiteSpace(value) || value.Length < MIN_MODEL_LENGTH)
                 {
-                    throw new ArgumentException(string.Format(ExceptionMessages.InvalidModel, value, 4));
+                    throw new ArgumentException(string.Format(ExceptionMessages.InvalidModel, value, MIN_MODEL_LENGTH));
                 }
 
                 model = value;
@@ -54,7 +55,6 @@ namespace EasterRaces.Models.Cars.Entities
         }
  
         public double CubicCentimeters { get; }
-
 
         public double CalculateRacePoints(int laps)
         {

@@ -10,10 +10,12 @@ namespace EasterRaces.Models.Races.Entities
 {
     public class Race : IRace
     {
+        private const int MIN_NAME_LENGTH = 5;
+        private const int MIN_NUMBERS_LAPS = 1;
+
         private string name;
         private int laps;
         private ICollection<IDriver> drivers;
-
 
         public Race(string name, int laps)
         {
@@ -28,9 +30,9 @@ namespace EasterRaces.Models.Races.Entities
             get => name;
             private set
             {
-                if (string.IsNullOrEmpty(value) || value.Length < 5)
+                if (string.IsNullOrEmpty(value) || value.Length < MIN_NAME_LENGTH)
                 {
-                    throw new ArgumentException(string.Format(ExceptionMessages.InvalidName, name, 5));
+                    throw new ArgumentException(string.Format(ExceptionMessages.InvalidName, name, MIN_NAME_LENGTH));
                 }
 
                 name = value;
@@ -42,9 +44,9 @@ namespace EasterRaces.Models.Races.Entities
             get => laps;
             private set
             {
-                if (value < 1)
+                if (value < MIN_NUMBERS_LAPS)
                 {
-                    throw new ArgumentException(string.Format(ExceptionMessages.InvalidNumberOfLaps, 1));
+                    throw new ArgumentException(string.Format(ExceptionMessages.InvalidNumberOfLaps, MIN_NUMBERS_LAPS));
                 }
 
                 laps = value;
@@ -52,7 +54,6 @@ namespace EasterRaces.Models.Races.Entities
         }
 
         public IReadOnlyCollection<IDriver> Drivers => (IReadOnlyCollection<IDriver>)drivers;
-
 
 
         public void AddDriver(IDriver driver)
@@ -74,6 +75,5 @@ namespace EasterRaces.Models.Races.Entities
 
             drivers.Add(driver);
         }
-
     }
 }
