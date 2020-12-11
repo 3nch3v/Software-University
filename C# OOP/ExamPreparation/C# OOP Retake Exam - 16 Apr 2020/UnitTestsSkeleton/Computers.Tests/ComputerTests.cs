@@ -125,9 +125,6 @@ namespace Computers.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        //public Part GetPart(string partName)
-        //    => this.Parts.FirstOrDefault(x => x.Name == partName);
-
         [Test]
         public void GetPartShouldReturnThePartByName()
         {
