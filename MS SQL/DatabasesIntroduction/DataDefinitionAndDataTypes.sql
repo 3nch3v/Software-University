@@ -106,3 +106,12 @@ ALTER TABLE Users
 
 INSERT INTO Users (Username, [Password], IsDeleted)
 	VALUES ('AAA', 'ldfFFDS34@Es12', '0');
+
+
+
+ALTER TABLE Users DROP CONSTRAINT [PK_Userspk]
+
+ALTER TABLE Users ADD PRIMARY KEY (Id)
+
+ALTER TABLE Users ADD CONSTRAINT CHK_UsernameMinLength CHECK (LEN(Username) >= 3)
+
