@@ -114,3 +114,119 @@ INSERT INTO StudentsExams
 		   (2, 103);
 
 --Problem 4.	Self-Referencing 
+
+CREATE TABLE Teachers
+(
+	TeacherID INT PRIMARY KEY IDENTITY(101, 1),
+	[Name] NVARCHAR(50) NOT NULL,
+	ManagerID INT REFERENCES Teachers(TeacherID)
+);
+
+INSERT INTO Teachers
+	VALUES ('John', NULL),
+	('Maya', 106),
+	('Silvia', 106),
+	('Ted', 105),
+	('Mark', 101),
+	('Greta', 101);
+
+--Problem 5.	Online Store Database
+
+CREATE TABLE Cities
+(
+	CityID INT PRIMARY KEY,
+	[Name] VARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE Customers
+(
+	CustomerID INT PRIMARY KEY,
+	[Name] VARCHAR(50) NOT NULL,
+	Birthday DATE,
+	CityID INT REFERENCES Cities(CityID)
+)
+
+CREATE TABLE Orders
+(
+	OrderID INT PRIMARY KEY,
+	CustomerID INT REFERENCES Customers(CustomerID)
+)
+
+
+CREATE TABLE ItemTypes
+(
+	ItemTypeID INT PRIMARY KEY,
+	[Name] VARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE Items
+(
+	ItemID INT PRIMARY KEY,
+	[Name] VARCHAR(50) NOT NULL,
+	ItemTypeID INT REFERENCES ItemTypes(ItemTypeID)
+)
+
+CREATE TABLE OrderItems
+(
+	OrderID INT REFERENCES Orders(OrderID),
+	ItemID INT REFERENCES Items(ItemID)
+	CONSTRAINT PK_OrderItems PRIMARY KEY (OrderID, ItemID) 
+)
+
+
+--Problem 6.	University Database
+
+CREATE TABLE Majors
+(
+	MajorID INT PRIMARY KEY,
+	[Name] NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Students
+(
+	StudentID INT PRIMARY KEY,
+	StudentNumber INT NOT NULL,
+	StudentName NVARCHAR(50) NOT NULL,
+	MajorID INT REFERENCES Majors(MajorID)
+)
+
+
+CREATE TABLE Payments
+(
+	PaymentID INT PRIMARY KEY,
+	PaymentDate DATE NOT NULL,
+	PaymentAmount DECIMAL NOT NULL,
+	StudentID INT REFERENCES Students(StudentID)
+)
+
+CREATE TABLE Subjects
+(
+	SubjectID INT PRIMARY KEY,
+	SubjectName NVARCHAR(50) NOT NULL,
+)
+
+CREATE TABLE Agenda
+(
+	StudentID INT REFERENCES Students(StudentID),
+	SubjectID INT REFERENCES Subjects(SubjectID),
+	CONSTRAINT PK_Agenda PRIMARY KEY (StudentID, SubjectID)
+)
+
+
+/*
+Problem 7.	SoftUni Design
+Create an E/R Diagram of the SoftUni Database. There are some special relations you should check out: Employees are self-referenced (ManagerID) and Departments have One-to-One with the Employees (ManagerID) while the Employees have One-to-Many (DepartmentID). You might find it interesting how it looks on the diagram. 
+
+Problem 8.	Geography Design
+Create an E/R Diagram of the Geography Database.
+*/
+
+--Problem 9.	*Peaks in Rila
+
+USE Geography;
+
+SELECT MountainRange, P.PeakName, P.Elevation FROM Mountains
+	JOIN Peaks AS P ON Mountains.Id = P.MountainId
+		WHERE Mountains.MountainRange = 'Rila'
+			ORDER BY P.Elevation DESC
+		
