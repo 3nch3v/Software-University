@@ -25,5 +25,8 @@ SELECT EmployeeID, FirstName, LastName, d.[Name] AS DepartmentName
 
 --4.	Employee Departments
 
-
-
+SELECT TOP(5) EmployeeID, FirstName, Salary, d.[Name] AS DepartmentName
+	FROM Employees e
+		JOIN Departments d ON e.DepartmentID = d.DepartmentID 
+			WHERE Salary > 15000
+				ORDER BY e.DepartmentID;
