@@ -30,3 +30,138 @@ SELECT TOP(5) EmployeeID, FirstName, Salary, d.[Name] AS DepartmentName
 		JOIN Departments d ON e.DepartmentID = d.DepartmentID 
 			WHERE Salary > 15000
 				ORDER BY e.DepartmentID;
+
+--5.	Employees Without Project
+
+SELECT TOP(3) e.EmployeeID, e.FirstName
+	FROM Employees e
+	    LEFT OUTER JOIN  EmployeesProjects ep ON e.EmployeeID = ep.EmployeeID
+		LEFT OUTER JOIN Projects p ON ep.ProjectID = p.ProjectID
+			WHERE p.ProjectID IS NULL	 	
+				ORDER BY e.EmployeeID
+
+--6.	Employees Hired After
+
+SELECT FirstName, LastName, HireDate, d.[Name] AS DeptName
+	FROM Employees e
+		JOIN Departments d ON e.DepartmentID = d.DepartmentID
+			WHERE HireDate > '1.1.1999' AND (d.[Name] = 'Sales' OR d.[Name] = 'Finance')
+				ORDER BY e.HireDate
+
+--7.	Employees with Project
+
+SELECT TOP(5) e.EmployeeID, e.FirstName, p.[Name] AS ProjectName
+	FROM Employees e
+		JOIN EmployeesProjects ep ON e.EmployeeID = ep.EmployeeID
+		JOIN Projects p ON ep.ProjectID = p.ProjectID
+			WHERE StartDate > '2002-08-13 00:00:00' AND EndDate IS NULL
+			ORDER BY e.EmployeeID
+
+--8.	Employee 24
+
+SELECT e.EmployeeID, 
+	   e.FirstName, 
+		CASE 
+			WHEN p.StartDate > '2005-01-01 00:00:00' THEN nULL
+			ELSE p.[Name]
+		END AS ProjectName
+	FROM Employees e
+		JOIN EmployeesProjects ep ON e.EmployeeID = ep.EmployeeID
+		JOIN Projects p ON ep.ProjectID = p.ProjectID
+			WHERE e.EmployeeID = 24 
+
+--9.	Employee Manager
+
+SELECT e.EmployeeID, e.FirstName, e.ManagerID, ee.FirstName AS  ManagerName
+	FROM Employees e
+		 JOIN Employees ee ON e.ManagerID = ee.EmployeeID 
+			WHERE e.ManagerID IN (3, 7)
+				ORDER BY e.EmployeeID
+
+--10. Employee Summary
+
+SELECT TOP(50) e.EmployeeID, 
+			   CONCAT_WS(' ', e.FirstName, e.LastName) AS EmployeeName,
+			   CONCAT_WS(' ', ee.FirstName, ee.LastName) AS ManagerName,
+			   D.[Name] AS DepartmentName
+	FROM Employees e
+		 JOIN Employees ee ON e.ManagerID = ee.EmployeeID 
+		 JOIN Departments d ON e.DepartmentID = d.DepartmentID
+				ORDER BY e.EmployeeID
+
+--11. Min Average Salary
+
+SELECT MIN(a.AverageSalary) AS MinAverageSalary
+	FROM 
+  (
+		SELECT DepartmentID, 
+			   AVG(Salary) AS AverageSalary
+			FROM Employees
+			GROUP BY DepartmentID
+  ) AS a
+
+
+--12. Highest Peaks in Bulgaria
+
+USE Geography;
+
+SELECT mc.CountryCode, m.MountainRange, p.PeakName, p.Elevation
+	FROM Peaks p
+		JOIN Mountains m ON m.Id = p.MountainId 
+		JOIN MountainsCountries mc ON mc.MountainId = p.MountainId 
+	WHERE Elevation > 2835 AND mc.CountryCode = 'BG'
+	ORDER BY Elevation DESC
+
+--13. Count Mountain Ranges
+
+SELECT mc.CountryCode, COUNT(CountryCode) AS MountainRanges 
+	FROM Mountains m
+		JOIN MountainsCountries mc ON m.Id = mc.MountainId
+		WHERE mc.CountryCode IN ('BG', 'RU', 'US')
+		GROUP BY mc.CountryCode
+
+--14. Countries with Rivers
+
+SELECT TOP(5) CountryName, RiverName
+	FROM Countries c
+		JOIN Continents co ON co.ContinentCode = c.ContinentCode
+		LEFT JOIN CountriesRivers cr ON cr.CountryCode = c.CountryCode
+		LEFT JOIN Rivers r ON r.Id = cr.RiverId
+			WHERE ContinentName = 'Africa'
+				ORDER BY CountryName
+
+--15. *Continents and Currencies
+
+/*Write a query that selects:
+•	ContinentCode
+•	CurrencyCode
+•	CurrencyUsage
+Find all continents and their most used currency. Filter any currency that is used in only one country. Sort your results by ContinentCode.
+*/
+
+--16. Countries Without Any Mountains
+
+SELECT COUNT(c.CountryCode) AS [Count]
+	FROM Countries c
+	LEFT JOIN MountainsCountries mc ON mc.CountryCode = c.CountryCode
+		WHERE MountainId IS NULL
+
+--17. Highest Peak and Longest River by Country
+
+SELECT TOP(5) CountryName, HighestPeakElevation, LongestRiverLength
+	FROM
+(
+	SELECT c.CountryName, 
+			Elevation AS HighestPeakElevation, 
+			r.[Length] AS LongestRiverLength,
+			ROW_NUMBER() OVER(PARTITION BY c.CountryName ORDER BY Elevation DESC) rn
+	FROM Countries c
+		 JOIN MountainsCountries mc ON mc.CountryCode = c.CountryCode
+	  	 JOIN Peaks p ON p.MountainId = mc.MountainId
+		 JOIN CountriesRivers rc ON rc.CountryCode = c.CountryCode
+	  	 JOIN Rivers r ON r.Id = rc.RiverId
+			
+) AS a
+	WHERE rn =1
+	ORDER BY HighestPeakElevation DESC, LongestRiverLength DESC, CountryName
+
