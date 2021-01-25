@@ -132,12 +132,28 @@ SELECT TOP(5) CountryName, RiverName
 
 --15. *Continents and Currencies
 
-/*Write a query that selects:
-•	ContinentCode
-•	CurrencyCode
-•	CurrencyUsage
-Find all continents and their most used currency. Filter any currency that is used in only one country. Sort your results by ContinentCode.
-*/
+SELECT ContinentCode, CurrencyCode, CurrencyUsage
+	FROM
+		(
+			SELECT ContinentCode, 
+			CurrencyCode,
+			CurrencyUsage,
+			ROW_NUMBER() OVER(PARTITION BY ContinentCode ORDER BY CurrencyUsage DESC) AS rn,
+			DENSE_RANK () OVER ( PARTITION BY ContinentCode
+						ORDER BY CurrencyUsage  DESC
+						 ) rank_no 
+	  
+			FROM
+			(
+			SELECT c.ContinentCode, cc.CurrencyCode, COUNT(cc.CurrencyCode) AS CurrencyUsage
+				FROM Continents c
+					JOIN Countries cc ON c.ContinentCode = cc.ContinentCode
+				GROUP BY c.ContinentCode, cc.CurrencyCode
+
+		) AS a 
+		) AS a
+	WHERE rank_no  = 1 AND CurrencyUsage > 1
+	ORDER BY ContinentCode, CurrencyUsage DESC
 
 --16. Countries Without Any Mountains
 
@@ -165,3 +181,32 @@ SELECT TOP(5) CountryName, HighestPeakElevation, LongestRiverLength
 	WHERE rn =1
 	ORDER BY HighestPeakElevation DESC, LongestRiverLength DESC, CountryName
 
+--18. Highest Peak Name and Elevation by Country
+
+SELECT TOP(5) Country, [Highest Peak Name], [Highest Peak Elevation], Mountain
+	FROM
+	(
+		SELECT c.CountryName AS Country,
+	   CASE
+		WHEN p.PeakName IS NULL THEN '(no highest peak)'
+	    ELSE p.PeakName 
+	   END AS [Highest Peak Name],
+
+	   CASE
+		WHEN p.Elevation IS NULL THEN 0
+	    ELSE p.Elevation 
+	   END AS [Highest Peak Elevation],
+
+	   CASE
+		WHEN m.MountainRange IS NULL THEN '(no mountain)'
+	    ELSE m.MountainRange 
+	   END AS Mountain,
+	   ROW_NUMBER() OVER(PARTITION BY c.CountryName ORDER BY Elevation DESC) rn
+	FROM Countries c
+		LEFT JOIN MountainsCountries mc ON c.CountryCode = mc.CountryCode
+		LEFT JOIN Peaks p ON mc.MountainId = p.MountainId
+		LEFT JOIN Mountains m ON p.MountainId = m.Id
+			
+	) AS A
+		WHERE rn = 1
+		ORDER BY Country, [Highest Peak Elevation] DESC, [Highest Peak Name]
