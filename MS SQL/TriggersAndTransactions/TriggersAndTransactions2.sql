@@ -41,14 +41,61 @@ END;
 
 --20. *Massive Shopping
 
-/*SELECT * 
-	FROM Users u
-	JOIN UsersGames ug ON u.Id = ug.UserId
-	JOIN Games g ON ug.GameId = g.Id
-	JOIN UserGameItems ugi ON ug.UserId = ugi.UserGameId
-	JOIN Items i ON ugi.ItemId = i.Id
-		WHERE u.FirstName = 'Stamat' AND g.[Name] = 'Safflower'
-*/
+DECLARE @UserID INT = (SELECT Id FROM Users WHERE Username = 'Stamat');
+DECLARE @GameID INT = (SELECT Id FROM Games WHERE Name = 'Safflower');
+DECLARE @UserCash MONEY = (SELECT Cash FROM UsersGames WHERE UserId = @UserID AND GameId = @GameID);
+DECLARE @UserGameID INT = (SELECT Id FROM UsersGames WHERE UserId = @UserID AND GameId = @GameID);
+DECLARE @ItemsTotalPrice MONEY;
+
+BEGIN TRANSACTION
+	SET @ItemsTotalPrice = (SELECT SUM(Price) FROM Items WHERE MinLevel BETWEEN 11 AND 12)
+
+	IF(@UserCash - @ItemsTotalPrice >= 0)
+	BEGIN
+		INSERT INTO UserGameItems
+			SELECT Id, @UserGameID 
+			FROM Items
+			WHERE Id IN (SELECT Id FROM Items WHERE MinLevel BETWEEN 11 AND 12)
+
+		UPDATE UsersGames
+		SET Cash -= @ItemsTotalPrice
+		WHERE GameId = @GameID AND UserId = @UserID
+	COMMIT
+	END
+
+	ELSE
+	BEGIN
+		ROLLBACK
+	END
+
+SET @UserCash = (SELECT Cash FROM UsersGames WHERE UserId = @UserID AND GameId = @GameID)
+
+BEGIN TRANSACTION
+	SET @ItemsTotalPrice = (SELECT SUM(Price) FROM Items WHERE MinLevel BETWEEN 19 AND 21)
+
+	IF(@UserCash - @ItemsTotalPrice >= 0)
+	BEGIN
+		INSERT INTO UserGameItems
+			SELECT Id, @UserGameID 
+			FROM Items
+			WHERE Id IN (SELECT Id FROM Items WHERE MinLevel BETWEEN 19 AND 21)
+
+		UPDATE UsersGames
+		SET Cash -= @ItemsTotalPrice
+		WHERE GameId = @GameID AND UserId = @UserID
+	COMMIT
+	END
+
+	ELSE
+	BEGIN
+		ROLLBACK
+	END
+
+SELECT [Name] AS [Item Name]
+FROM Items
+WHERE Id IN (SELECT ItemId FROM UserGameItems WHERE UserGameId = @userGameID)
+ORDER BY [Item Name]
+
 
 --21. Employees with Three Projects
 
