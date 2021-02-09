@@ -6,13 +6,12 @@ RETURNS INT
 AS
 BEGIN
 	DECLARE @Count INT = (SELECT COUNT(c.Id) AS [Count]
-	FROM Colonists c
-	JOIN TravelCards t ON c.Id = t.ColonistId
-	JOIN Journeys j ON t.JourneyId = j.Id
-	JOIN Spaceports sp ON j.DestinationSpaceportId = sp.Id
-	JOIN Planets p ON sp.PlanetId = p.Id
-		WHERE p.Name = @PlanetName)
-
+							FROM Colonists c
+							JOIN TravelCards t ON c.Id = t.ColonistId
+							JOIN Journeys j ON t.JourneyId = j.Id
+							JOIN Spaceports sp ON j.DestinationSpaceportId = sp.Id
+							JOIN Planets p ON sp.PlanetId = p.Id
+								WHERE p.Name = @PlanetName)
 	RETURN @Count
 END
 
