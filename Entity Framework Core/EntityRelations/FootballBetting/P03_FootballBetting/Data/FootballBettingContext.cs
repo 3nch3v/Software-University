@@ -20,11 +20,11 @@ namespace P03_FootballBetting.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Player> Players { get; set; }
-        public DbSet<PlayerStatistic> PlayersStatistics { get; set; }
+        public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Town> Towns { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
