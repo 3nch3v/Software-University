@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WH.Models.Enums;
 
-namespace Warehouse.Models
+namespace Warehouse.Models.ProductModels
 {
     public class Product
     {
@@ -49,9 +49,11 @@ namespace Warehouse.Models
       
         public decimal? CostPerItem { get; set; }
 
-        public decimal? Price { get; set; }
+        public decimal Price { get; set; }
 
         public bool? IsActive { get; set; }
+
+        public DateTime Date { get; set; }
 
         public ICollection<Location> Locations { get; set; }
 

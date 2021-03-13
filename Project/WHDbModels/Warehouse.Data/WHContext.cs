@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Warehouse.Models;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Warehouse.Models.CustomerModels;
+using Warehouse.Models.ProductModels;
 
 namespace Warehouse.Data
 {
@@ -25,6 +27,14 @@ namespace Warehouse.Data
 
         public DbSet<SizeColorProduct> SizesColorsProducts { get; set; }
 
+        public DbSet<Customer> Customers { get; set; }
+
+        public DbSet<InvoiceAddress> InvoicesAddresses { get; set; }
+
+        public DbSet<ShippingAddress> ShippingAddresses { get; set; }
+
+   
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -42,6 +52,10 @@ namespace Warehouse.Data
                     k.SizeId,
                     k.ColorId
                 });
+
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Date)
+                .HasDefaultValue(DateTime.UtcNow);
 
         }
     }

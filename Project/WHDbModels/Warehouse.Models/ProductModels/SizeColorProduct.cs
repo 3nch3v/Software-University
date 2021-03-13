@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Warehouse.Models
+﻿
+namespace Warehouse.Models.ProductModels
 {
     public class SizeColorProduct
     {

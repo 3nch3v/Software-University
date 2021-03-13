@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Warehouse.Models.ProductModels;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Warehouse.Models
+namespace Warehouse.Models.ProductModels
 {
-    public class Location
+    public class Collection
     {
-        public Location()
+        public Collection()
         {
             Products = new HashSet<Product>();
         }
@@ -15,7 +16,7 @@ namespace Warehouse.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(20)]
+        [Column(TypeName = "NVARCHAR(100)")]
         public string Name { get; set; }
 
         public ICollection<Product> Products { get; set; }
