@@ -37,7 +37,6 @@ namespace Warehouse.Models.ProductModels
         public bool? PhysicalProduct { get; set; }
 
         public int? CountryOfOriginId { get; set; }
-
         public CountryOfOrigin CountryOfOrigin { get; set; }
 
         public double? Weight { get; set; }
