@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using AutoMapper;
 using ProductShop.Data;
+using ProductShop.Dtos.Export;
 using ProductShop.Dtos.Import;
 using ProductShop.Models;
 
@@ -23,13 +26,37 @@ namespace ProductShop
             //var inpuUserstXml = File.ReadAllText(@"..\..\..\Datasets\users.xml");
             //var inputProductsXml = File.ReadAllText(@"..\..\..\Datasets\products.xml");
             //var inputCategoriesXml = File.ReadAllText(@"..\..\..\Datasets\categories.xml");
-            var importCategoryProductsXml = File.ReadAllText(@"..\..\..\Datasets\categories-products.xml");
+            //var importCategoryProductsXml = File.ReadAllText(@"..\..\..\Datasets\categories-products.xml");
 
             //ImportUsers(db, inpuUserstXml);
             //ImportProducts(db, inputProductsXml);
 
-            var result = ImportCategoryProducts(db, importCategoryProductsXml);
+            var result = GetProductsInRange(db);
             Console.WriteLine(result);
+        }
+
+        public static string GetProductsInRange(ProductShopContext context)
+        {
+            var products = context
+               .Products
+               .Where(p => p.Price >= 500 && p.Price <= 1000)
+               .Select(p => new ProductsExportDto()
+               {
+                   Name = p.Name,
+                   Price = p.Price,
+                   Buyer = p.Buyer.FirstName + " " + p.Buyer.LastName
+               })
+               .OrderBy(p => p.Price)
+               .Take(10)
+               .ToArray();
+
+            StringBuilder sb = new StringBuilder();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(ProductsExportDto[]), new XmlRootAttribute("Products"));
+            XmlSerializerNamespaces xmlNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
+            serializer.Serialize(new StringWriter(sb), products, xmlNamespaces);
+
+            return sb.ToString().TrimEnd();
         }
 
         public static string ImportCategoryProducts(ProductShopContext context, string inputXml)

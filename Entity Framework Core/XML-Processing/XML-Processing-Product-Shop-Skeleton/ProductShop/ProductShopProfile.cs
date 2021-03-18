@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ProductShop.Dtos.Export;
 using ProductShop.Dtos.Import;
 using ProductShop.Models;
 
@@ -12,6 +13,8 @@ namespace ProductShop
             CreateMap<ProductsInputDto, Product>();
             CreateMap<CategoriesInputDto, Category>();
             CreateMap<CategoriesProductsInputDto, CategoryProduct>();
+
+            CreateMap<Product, ProductsExportDto>();
         }
     }
 }
