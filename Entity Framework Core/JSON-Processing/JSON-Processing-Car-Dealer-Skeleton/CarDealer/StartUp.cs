@@ -24,7 +24,7 @@ namespace CarDealer
 
             //var inputJsonSuppliers = File.ReadAllText(@"..\..\..\Datasets\suppliers.json");
             //var inputJsonParts = File.ReadAllText(@"..\..\..\Datasets\parts.json");
-            //var inputJsonCars = File.ReadAllText(@"..\..\..\Datasets\cars.json");
+            var inputJsonCars = File.ReadAllText(@"..\..\..\Datasets\cars.json");
             //var inputJsonCustomers = File.ReadAllText(@"..\..\..\Datasets\customers.json");
             //var inputJsonSales = File.ReadAllText(@"..\..\..\Datasets\sales.json");
 
@@ -34,8 +34,8 @@ namespace CarDealer
             //string resultParts = ImportParts(db, inputJsonParts);
             //Console.WriteLine(resultParts);
 
-            //string resultCars = ImportCars(db, inputJsonCars);
-            //Console.WriteLine(resultCars);
+            string resultCars = ImportCars(db, inputJsonCars);
+            Console.WriteLine(resultCars);
 
             //string resultCustomers = ImportCustomers(db, inputJsonCustomers);
             //Console.WriteLine(resultCustomers);
@@ -43,7 +43,7 @@ namespace CarDealer
             //string resultSales = ImportSales(db, inputJsonSales);
             //Console.WriteLine(resultSales);
 
-            Console.WriteLine(GetSalesWithAppliedDiscount(db));
+            //Console.WriteLine(GetSalesWithAppliedDiscount(db));
         }
 
         public static string GetSalesWithAppliedDiscount(CarDealerContext context)

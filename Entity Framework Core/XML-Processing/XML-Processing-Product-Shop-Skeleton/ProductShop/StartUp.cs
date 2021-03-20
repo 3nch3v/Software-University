@@ -79,7 +79,7 @@ namespace ProductShop
                   {
                       Count = u.ProductsSold.Count,
                       Products = u.ProductsSold
-                          .Select(s => new ProductDto
+                          .Select(s => new ProductNameAndPriceExportDto
                           {
                               Name = s.Name,
                               Price = s.Price
@@ -135,7 +135,7 @@ namespace ProductShop
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     SoldProducts = u.ProductsSold
-                        .Select(p => new ProductExportDto
+                        .Select(p => new ProductNameAndPriceExportDto
                         {
                             Name = p.Name,
                             Price = p.Price
@@ -160,7 +160,7 @@ namespace ProductShop
             var products = context
                .Products
                .Where(p => p.Price >= 500 && p.Price <= 1000)
-               .Select(p => new ProductsExportDto()
+               .Select(p => new ProductExportDto()
                {
                    Name = p.Name,
                    Price = p.Price,
@@ -172,7 +172,7 @@ namespace ProductShop
 
             StringBuilder sb = new StringBuilder();
 
-            XmlSerializer serializer = new XmlSerializer(typeof(ProductsExportDto[]), new XmlRootAttribute("Products"));
+            XmlSerializer serializer = new XmlSerializer(typeof(ProductExportDto[]), new XmlRootAttribute("Products"));
             XmlSerializerNamespaces xmlNamespaces = new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty });
             serializer.Serialize(new StringWriter(sb), products, xmlNamespaces);
 
