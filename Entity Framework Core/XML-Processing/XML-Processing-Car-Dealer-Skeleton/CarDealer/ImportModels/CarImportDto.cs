@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace CarDealer.ImportModels
 {
     [XmlType("Car")]
-    public class CarDTO
+    public class CarImportDto
     {
         [XmlElement("make")]
         public string Make { get; set; }
@@ -16,7 +16,7 @@ namespace CarDealer.ImportModels
         public long TraveledDistance { get; set; }
 
         [XmlArray("parts")]
-        public PartDTO[] PartsIds { get; set; }
+        public PartImportDto[] PartsIds { get; set; }
 
     }
 }
