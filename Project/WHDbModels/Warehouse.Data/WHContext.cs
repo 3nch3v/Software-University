@@ -1,7 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Warehouse.Models.CustomerModels;
+using Warehouse.Models.EmployeeModels;
+using Warehouse.Models.OrderModels;
 using Warehouse.Models.ProductModels;
+using Warehouse.Models.WarehouseModels;
 
 namespace Warehouse.Data
 {
@@ -27,13 +30,37 @@ namespace Warehouse.Data
 
         public DbSet<SizeColorProduct> SizesColorsProducts { get; set; }
 
+        //-----
+
         public DbSet<Customer> Customers { get; set; }
 
         public DbSet<InvoiceAddress> InvoicesAddresses { get; set; }
 
         public DbSet<ShippingAddress> ShippingAddresses { get; set; }
 
-   
+        //-----
+
+        public DbSet<Order> Orders { get; set; }
+
+        //-----
+
+        public DbSet<Box> Boxes { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Position> Positions { get; set; }
+
+        //public DbSet<PickUpList> PickUpLists { get; set; }
+
+        public DbSet<TheWareHouse> WareHouses { get; set; }
+
+        public DbSet<Destination> Destinations { get; set; }
+
+        //-----
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

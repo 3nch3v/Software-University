@@ -2,8 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Warehouse.Models.CustomerModels;
+using Warehouse.Models.ProductModels;
 
-namespace Warehouse.Models.ProductModels
+namespace Warehouse.Models.OrderModels
 {
     public class Order
     {
@@ -22,7 +23,8 @@ namespace Warehouse.Models.ProductModels
         [MaxLength(35)]
         public string InvoiceNumber { get; set; }
 
-        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
+        public virtual Customer Customer { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -32,6 +34,8 @@ namespace Warehouse.Models.ProductModels
 
         public bool IsPaid { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public bool IsDone { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

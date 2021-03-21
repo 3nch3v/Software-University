@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Warehouse.Models.WarehouseModels;
 using WH.Models.Enums;
 
 namespace Warehouse.Models.ProductModels
@@ -12,7 +13,6 @@ namespace Warehouse.Models.ProductModels
         {
             Collections = new HashSet<Collection>();
             Pictures = new HashSet<Picture>();
-            Locations = new HashSet<Location>();
             SizeColorProduct = new HashSet<SizeColorProduct>();
         }
 
@@ -37,7 +37,7 @@ namespace Warehouse.Models.ProductModels
         public bool? PhysicalProduct { get; set; }
 
         public int? CountryOfOriginId { get; set; }
-        public CountryOfOrigin CountryOfOrigin { get; set; }
+        public virtual CountryOfOrigin CountryOfOrigin { get; set; }
 
         public double? Weight { get; set; }
 
@@ -50,16 +50,23 @@ namespace Warehouse.Models.ProductModels
 
         public decimal Price { get; set; }
 
+        public decimal? CompareToPrice { get; set; }
+
         public bool? IsActive { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } 
 
-        public ICollection<Location> Locations { get; set; }
+        public int? PositionId { get; set; }
+        public virtual Position Position { get; set; }
 
-        public ICollection<Collection> Collections { get; set; }
+        public int LocationId { get; set; }
+        public virtual Location Location { get; set; }
 
-        public ICollection<Picture> Pictures { get; set; }
 
-        public ICollection<SizeColorProduct> SizeColorProduct { get; set; }
+        public virtual ICollection<Collection> Collections { get; set; }
+
+        public virtual ICollection<Picture> Pictures { get; set; }
+
+        public virtual ICollection<SizeColorProduct> SizeColorProduct { get; set; }
     }
 }

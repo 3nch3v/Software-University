@@ -1,11 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Warehouse.Models.ProductModels;
+using Warehouse.Models.OrderModels;
 
 namespace Warehouse.Models.CustomerModels
 {
     public class Customer
     {
+        public Customer()
+        {
+            ShippingAddresses = new HashSet<ShippingAddress>();
+            Orders = new HashSet<Order>();
+        }
         public int Id { get; set; }
 
         [Required]
@@ -24,11 +29,11 @@ namespace Warehouse.Models.CustomerModels
         [StringLength(35, MinimumLength = 8)]
         public string Password { get; set; }
 
-        public InvoiceAddress InvoiceAddress { get; set; }
+        public virtual InvoiceAddress InvoiceAddress { get; set; }
 
-        public ICollection<ShippingAddress> ShippingAddresses { get; set; }
+        public virtual ICollection<ShippingAddress> ShippingAddresses { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
     }
 }

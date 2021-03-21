@@ -17,6 +17,6 @@ namespace Warehouse.Models.ProductModels
         [MaxLength(20)]
         public string Value { get; set; }
 
-        public ICollection<SizeColorProduct> SizeColorProduct { get; set; }
+        public virtual ICollection<SizeColorProduct> SizeColorProduct { get; set; }
     }
 }

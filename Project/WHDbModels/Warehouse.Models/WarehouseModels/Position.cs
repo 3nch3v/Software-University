@@ -2,11 +2,11 @@
 using System.ComponentModel.DataAnnotations;
 using Warehouse.Models.ProductModels;
 
-namespace Warehouse.Models
+namespace Warehouse.Models.WarehouseModels
 {
-    public class Location
+   public class Position
     {
-        public Location()
+        public Position()
         {
             Products = new HashSet<Product>();
         }
@@ -18,6 +18,6 @@ namespace Warehouse.Models
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

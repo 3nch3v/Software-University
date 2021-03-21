@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Warehouse.Models.ProductModels;
 
-namespace Warehouse.Models.ProductModels
+namespace Warehouse.Models.WarehouseModels
 {
     public class Location
     {
@@ -17,6 +18,6 @@ namespace Warehouse.Models.ProductModels
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

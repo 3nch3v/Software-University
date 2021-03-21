@@ -18,6 +18,6 @@ namespace Warehouse.Models.ProductModels
         [Column(TypeName = "NVARCHAR(50)")]
         public string Name { get; set; }
 
-        public ICollection<SizeColorProduct> SizeColorProduct { get; set; }
+        public virtual ICollection<SizeColorProduct> SizeColorProduct { get; set; }
     }
 }

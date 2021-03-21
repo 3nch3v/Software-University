@@ -1,4 +1,6 @@
-﻿using Warehouse.Data;
+﻿
+using System.Linq;
+using Warehouse.Data;
 
 namespace WH
 {
@@ -7,7 +9,6 @@ namespace WH
         static void Main(string[] args)
         {
             var db = new WHContext();
-
             db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
         }
