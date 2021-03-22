@@ -8,7 +8,7 @@ namespace Warehouse.Models.WarehouseModels
     {
         public Position()
         {
-            Products = new HashSet<Product>();
+            PositionsProducts = new HashSet<PositionProduct>();
         }
 
         [Key]
@@ -18,6 +18,6 @@ namespace Warehouse.Models.WarehouseModels
         [MaxLength(20)]
         public string Name { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<PositionProduct> PositionsProducts { get; set; }
     }
 }

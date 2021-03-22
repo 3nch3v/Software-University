@@ -19,13 +19,7 @@ namespace Warehouse.Models.WarehouseModels
         [MaxLength(20)]
         public string Barcode { get; set; }
 
-        public int DestinationId { get; set; }
-        public virtual Destination Destination { get; set; }
-
         public bool IsEmpty { get; set; }
-
-        public int EmployeeId { get; set; }
-        public virtual Employee Employee { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
     }

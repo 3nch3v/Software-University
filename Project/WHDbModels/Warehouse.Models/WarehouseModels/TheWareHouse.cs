@@ -14,8 +14,7 @@ namespace Warehouse.Models.WarehouseModels
             Products = new HashSet<Product>();
             Locations = new HashSet<Location>();
             //PickUpLists = new HashSet<PickUpList>();
-            TransportBoxes = new HashSet<Box>();
-            Destinations = new HashSet<Destination>();
+            Transfers = new HashSet<Transfer>();
             Orders = new HashSet<Order>();
             Employees = new HashSet<Employee>();
         }
@@ -35,9 +34,7 @@ namespace Warehouse.Models.WarehouseModels
 
         //public virtual ICollection<PickUpList> PickUpLists { get; set; }
 
-        public virtual ICollection<Box> TransportBoxes { get; set; }
-
-        public virtual ICollection<Destination> Destinations { get; set; }
+        public virtual ICollection<Transfer> Transfers { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 

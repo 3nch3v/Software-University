@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-using Warehouse.Data;
+﻿using Warehouse.Data;
 
 namespace WH
 {

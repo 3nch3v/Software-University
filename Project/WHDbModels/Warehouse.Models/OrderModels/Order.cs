@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+
 using Warehouse.Models.CustomerModels;
-using Warehouse.Models.ProductModels;
+using Warehouse.Models.Enums;
+
 
 namespace Warehouse.Models.OrderModels
 {
@@ -10,7 +12,7 @@ namespace Warehouse.Models.OrderModels
     {
         public Order()
         {
-            Products = new HashSet<Product>();
+            OrderProducts = new HashSet<OrderProduct>();
         }
 
         public int Id { get; set; }
@@ -30,12 +32,14 @@ namespace Warehouse.Models.OrderModels
         [MaxLength(100)]
         public string PaymentMethod { get; set; }
 
-        public decimal Amount => Products.Sum(x => x.Price);
+        //public decimal Amount => Products.Sum(x => x.Price);
 
         public bool IsPaid { get; set; }
 
-        public bool IsDone { get; set; }
+        public OrderStatus OrderStatus { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

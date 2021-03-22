@@ -42,6 +42,8 @@ namespace Warehouse.Data
 
         public DbSet<Order> Orders { get; set; }
 
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+
         //-----
 
         public DbSet<Box> Boxes { get; set; }
@@ -54,7 +56,7 @@ namespace Warehouse.Data
 
         public DbSet<TheWareHouse> WareHouses { get; set; }
 
-        public DbSet<Destination> Destinations { get; set; }
+        public DbSet<Transfer> Transfers { get; set; }
 
         //-----
 
@@ -80,10 +82,32 @@ namespace Warehouse.Data
                     k.ColorId
                 });
 
+            modelBuilder.Entity<LocationProduct>()
+                .HasKey(k => new
+                {
+                    k.ProductId,
+                    k.LocationId
+                });
+
+            modelBuilder.Entity<PositionProduct>()
+                .HasKey(k => new
+                {
+                    k.ProductId,
+                    k.PositionId
+                });
+
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(k => new
+                {
+                    k.ProductId,
+                    k.OrderId
+                });
+
             modelBuilder.Entity<Product>()
                 .Property(p => p.Date)
                 .HasDefaultValue(DateTime.UtcNow);
 
+         
         }
     }
 }

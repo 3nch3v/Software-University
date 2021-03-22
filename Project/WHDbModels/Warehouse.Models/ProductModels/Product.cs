@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Warehouse.Models.OrderModels;
 using Warehouse.Models.WarehouseModels;
 using WH.Models.Enums;
 
@@ -14,6 +15,9 @@ namespace Warehouse.Models.ProductModels
             Collections = new HashSet<Collection>();
             Pictures = new HashSet<Picture>();
             SizeColorProduct = new HashSet<SizeColorProduct>();
+            PositionsProducts = new HashSet<PositionProduct>();
+            LocationsProducts = new HashSet<LocationProduct>();
+            OrderProducts = new HashSet<OrderProduct>();
         }
 
         [Key]
@@ -54,19 +58,20 @@ namespace Warehouse.Models.ProductModels
 
         public bool? IsActive { get; set; }
 
-        public DateTime Date { get; set; } 
-
-        public int? PositionId { get; set; }
-        public virtual Position Position { get; set; }
-
-        public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
-
+        public DateTime Date { get; set; }
 
         public virtual ICollection<Collection> Collections { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }
 
+
+        public virtual ICollection<PositionProduct> PositionsProducts { get; set; }
+
+        public virtual ICollection<LocationProduct> LocationsProducts { get; set; }
+
+
         public virtual ICollection<SizeColorProduct> SizeColorProduct { get; set; }
+
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }

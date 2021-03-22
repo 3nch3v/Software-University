@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Warehouse.Models.ProductModels
 {
@@ -7,6 +6,10 @@ namespace Warehouse.Models.ProductModels
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public string FileName { get; set; }
 
         [MaxLength(2048)]
         public string URL { get; set; }
