@@ -1,10 +1,4 @@
-﻿
-
-
-using SoftJail.Data.Models.Enums;
-using XmlFacade;
-
-namespace SoftJail.DataProcessor
+﻿namespace SoftJail.DataProcessor
 { 
     using System;
     using System.Linq;
@@ -12,18 +6,18 @@ namespace SoftJail.DataProcessor
     using System.Globalization;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    using Data.Models.Enums;
+    using XmlFacade;
     using Newtonsoft.Json;
     using Data;
     using Data.Models;
     using ImportDto;
 
-
     public class Deserializer
     {
         public static string ImportDepartmentsCells(SoftJailDbContext context, string jsonString)
         {
-            var departmentsCellsDtos = JsonConvert.DeserializeObject<ICollection<DepartmentsCellsImportmodel>>(jsonString);
+            var departmentsCellsDtos = JsonConvert.DeserializeObject<ICollection<DepartmentsCellsImportМodel>>(jsonString);
 
             StringBuilder sb = new StringBuilder();
             List<Department> departments = new List<Department>();

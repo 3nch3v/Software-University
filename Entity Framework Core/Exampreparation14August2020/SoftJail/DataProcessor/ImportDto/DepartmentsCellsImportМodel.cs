@@ -4,7 +4,7 @@ namespace SoftJail.DataProcessor.ImportDto
 {
     using System.Collections.Generic;
 
-    public class DepartmentsCellsImportmodel
+    public class DepartmentsCellsImportМodel
     {
         [Required]
         [StringLength(25, MinimumLength = 3)]
