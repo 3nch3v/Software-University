@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskContinueWith", "TaskCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsyncAwaitTask", "AsyncAwaitTask\AsyncAwaitTask.csproj", "{F3F06C8F-63D8-44F1-9DF6-05308AFCCC3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chronometer", "Chronometer\Chronometer.csproj", "{55716092-6D2D-4B7A-95AB-9F21EC2CFAEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chronometer", "Chronometer\Chronometer.csproj", "{55716092-6D2D-4B7A-95AB-9F21EC2CFAEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSort", "MergeSort\MergeSort.csproj", "{A7DA34BD-6FF3-4D53-A6C0-C30F707FFEBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{55716092-6D2D-4B7A-95AB-9F21EC2CFAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55716092-6D2D-4B7A-95AB-9F21EC2CFAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55716092-6D2D-4B7A-95AB-9F21EC2CFAEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7DA34BD-6FF3-4D53-A6C0-C30F707FFEBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7DA34BD-6FF3-4D53-A6C0-C30F707FFEBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7DA34BD-6FF3-4D53-A6C0-C30F707FFEBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7DA34BD-6FF3-4D53-A6C0-C30F707FFEBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
