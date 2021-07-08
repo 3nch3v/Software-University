@@ -8,46 +8,118 @@
     {
         private Node<T> head;
 
+        private Node<T> tail;
+
         public int Count { get; private set; }
 
         public void AddFirst(T item)
         {
-            throw new NotImplementedException();
+            var newHead = new Node<T>
+            {
+                Item = item,
+            };
+
+            if (this.Count == 0)
+            {
+                this.head = this.tail = newHead;
+            }
+            else
+            {
+                newHead.Next = this.head;
+                this.head.Previous = newHead;
+                this.head = newHead;
+            }
+
+            this.Count++;
         }
 
         public void AddLast(T item)
         {
-            throw new NotImplementedException();
+            var newTail = new Node<T>
+            {
+                Item = item,
+            };
+
+            if (this.Count == 0)
+            {
+                this.head = this.tail = newTail;
+            }
+            else
+            {
+                newTail.Previous = this.tail;
+                this.tail.Next = newTail;
+                this.tail = newTail;
+            }
+
+            this.Count++;
         }
 
         public T GetFirst()
         {
-            throw new NotImplementedException();
+            EnsureEmptyList();
+            return this.head.Item;
         }
 
         public T GetLast()
         {
-            throw new NotImplementedException();
+            EnsureEmptyList();
+            return this.tail.Item;
         }
 
         public T RemoveFirst()
         {
-            throw new NotImplementedException();
+            EnsureEmptyList();
+
+            var item = this.head;
+            this.head.Previous = null;
+            this.head = this.head.Next;
+
+            this.Count--;
+
+            if (this.Count == 0)
+            {
+                this.head = this.tail = null;
+            }
+
+            return item.Item;
         }
 
         public T RemoveLast()
         {
-            throw new NotImplementedException();
+            EnsureEmptyList();
+            var item = this.tail;
+            this.tail.Next = null;
+            this.tail = this.tail.Previous;
+
+            this.Count--;
+
+            if (this.Count == 0)
+            {
+                this.head = this.tail = null;
+            }
+
+            return item.Item;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var currNode = this.head;
+
+            while (currNode != null)
+            {
+                yield return currNode.Item;
+                currNode = currNode.Next;
+            }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        private void EnsureEmptyList()
         {
-            throw new NotImplementedException();
+            if (this.Count == 0)
+            {
+                throw new InvalidOperationException();
+            }
         }
     }
 }
