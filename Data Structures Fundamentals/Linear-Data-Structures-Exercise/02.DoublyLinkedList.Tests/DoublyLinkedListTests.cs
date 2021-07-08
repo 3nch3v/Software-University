@@ -55,7 +55,7 @@ namespace Problem02.DoublyLinkedList.Tests
         public void RemoveFirstShouldWorkAsExpected()
         {
             var list = GetList();
-            var count = 5; //this._random.Next(10, 30);
+            var count = this._random.Next(10, 30);
             var array = new int[count];
 
             for (var i = 0; i < count; i++)

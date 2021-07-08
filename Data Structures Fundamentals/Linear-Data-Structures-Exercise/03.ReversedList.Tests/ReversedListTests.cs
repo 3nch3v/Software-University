@@ -250,7 +250,7 @@ namespace Problem03.ReversedList.Tests
         {
             var list = GetList();
 
-            var count = this._random.Next(10, 25);
+            var count = 5; // this._random.Next(10, 25);
             var randomInsertIndex = this._random.Next(0, count);
             var randomInsertValue = this._random.Next(count, 100);
             var array = new int[count + 1];
