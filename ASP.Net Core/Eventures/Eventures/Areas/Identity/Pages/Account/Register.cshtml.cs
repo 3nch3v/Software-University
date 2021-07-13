@@ -96,19 +96,14 @@
 
             if (ModelState.IsValid)
             {
-                //var user = new IdentityUser 
-                //{ 
-                //    UserName = Input.Username, 
-                //    Email = Input.Email,
-                //};
-
-                var user = new User
+                var user = new ApplicationUser
                 {
                     UserName = Input.Username,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     UniqueCitizenNumber = Input.UniqueCitizenNumber,
+                    
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);

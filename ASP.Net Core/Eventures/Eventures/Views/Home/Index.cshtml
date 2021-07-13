@@ -4,10 +4,20 @@
 
 @if (this.User.Identity.IsAuthenticated)
 {
-    <section class="home-text">
-        <h2 class="home-wilcome-title">Welcome, @User.Identity.Name!</h2>
-        <p class="aventures-wish">Eventures wish you an exciting expirience.</p>
-    </section>
+    if (this.User.IsInRole("ADMIN"))
+    {
+        <section class="home-text">
+            <h2 class="home-wilcome-title">Greeting, Administrator - @User.Identity.Name!</h2>
+            <p class="aventures-wish">Enjoy your work.</p>
+        </section>
+    }
+    else
+    {
+        <section class="home-text">
+            <h2 class="home-wilcome-title">Welcome, @User.Identity.Name!</h2>
+            <p class="aventures-wish">Eventures wish you an exciting expirience.</p>
+        </section>
+    }
 }
 else
 {

@@ -1,6 +1,7 @@
 namespace Eventures
 {
     using Eventures.Data;
+    using Eventures.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -39,6 +40,8 @@ namespace Eventures
             })
                 .AddEntityFrameworkStores<EventuresDbContext>();
             services.AddControllersWithViews();
+
+            services.AddTransient<IEventService, EventService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

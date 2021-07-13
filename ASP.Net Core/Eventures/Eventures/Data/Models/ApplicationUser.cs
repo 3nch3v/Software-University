@@ -2,14 +2,12 @@
 {
     using Microsoft.AspNetCore.Identity;
 
-    public class User : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
 
         public string UniqueCitizenNumber { get; set; }
-
-        public Role Role { get; set; }
     }
 }
