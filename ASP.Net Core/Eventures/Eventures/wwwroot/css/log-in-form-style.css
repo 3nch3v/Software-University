@@ -1,0 +1,18 @@
+﻿.log-in-form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.log-in-title {
+    text-align: center;
+}
+
+hr {
+    background: #AFEEEE;
+    padding-bottom: 3px;
+}
+
+.btn {
+    background: #AFEEEE;
+}

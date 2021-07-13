@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (this.User.Identity.IsAuthenticated)
+{
+    <section class="home-text">
+        <h2 class="home-wilcome-title">Welcome, @User.Identity.Name!</h2>
+        <p class="aventures-wish">Eventures wish you an exciting expirience.</p>
+    </section>
+}
+else
+{
+    <section class="home-text">
+        <h2 class="home-wilcome-logged-out">Eventures - The best ticket service in the world!</h2>
+        <p class="home-description-login"><a asp-area="Identity" asp-page="/Account/Login">Login</a> to start "eventing".</p>
+        <p class="home-description-register"><a asp-area="Identity" asp-page="/Account/Register">Register</a> if you don't have an acount.</p>
+    </section>
+}
+
+@section Scripts {
+    <link href="~/css/index-style.css" rel="stylesheet" />
+}
