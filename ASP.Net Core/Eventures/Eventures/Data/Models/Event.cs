@@ -21,6 +21,6 @@
 
         public int Tickets { get; set; }
 
-        public decimal TicketPrice { get; set; }
+        public double TicketPrice { get; set; }
     }
 }

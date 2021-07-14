@@ -1,1 +1,40 @@
-﻿
+﻿@using Eventures.ViewModels
+@model AllEventsViewModel
+
+@{
+    this.ViewData["Title"] = "All Events";
+    int number = 1;
+}
+
+<div class="events">
+    <h1>@this.ViewData["Title"]</h1>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        @foreach (var currEvent in Model.Events)
+        {
+            <tr>
+                <td>@number</td>
+                <td>@currEvent.Name</td>
+                <td>@currEvent.Start</td>
+                <td>@currEvent.End</td>
+                <td>@currEvent.End</td>
+            </tr>
+
+            number++;
+        }
+    </table>
+    <hr />
+</div>
+
+@section Scripts {
+    <link href="~/css/events-style.css" rel="stylesheet" />
+}

@@ -6,7 +6,7 @@
 }
 
 <div class="event-container">
-    <h1>@ViewData["Title"]</h1>
+    <h1 class="create-title">@ViewData["Title"]</h1>
 
     <div>
         <div>
@@ -30,12 +30,12 @@
                 <div class="event-start-end">
                     <div class="event-start">
                         <label asp-for="@Model.Start"></label>
-                        <input asp-for="@Model.Start" type="datetime" class="input-field form-control"  />
+                        <input asp-for="@Model.Start" type="datetime" datetime="dd-MMM-yy hh:mm:ss" placeholder="20-Jul-2018 22:00" class="input-field form-control"  />
                         <span asp-validation-for="@Model.Start" class="text-danger"></span>
                     </div>
                     <div class="event-end">
                         <label asp-for="@Model.End"></label>
-                        <input asp-for="@Model.End" type="datetime" class="input-field form-control" />
+                        <input asp-for="@Model.End" type="datetime" datetime="dd-MMM-yy hh:mm:ss" placeholder="21-Jul-2018 04:00" class="input-field form-control" />
                         <span asp-validation-for="@Model.End" class="text-danger"></span>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                 </div>
 
                 <hr />
-                <button type="submit" class="btn btn-primary">Create Event</button>
+                <button type="submit" class="create-btn btn btn-primary">Create Event</button>
             </form>
         </div>
 
@@ -64,5 +64,5 @@
 </div>
 
 @section Scripts {
-    <link href="~/css/add-event-style.css" rel="stylesheet" />
+    <link href="~/css/create-event-style.css" rel="stylesheet" />
 }

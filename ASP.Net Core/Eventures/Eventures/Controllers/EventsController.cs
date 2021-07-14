@@ -1,5 +1,6 @@
 ﻿namespace Eventures.Controllers
 {
+    using Eventures.Data;
     using Eventures.Services;
     using Eventures.ViewModels;
     using Microsoft.AspNetCore.Authorization;
@@ -17,7 +18,12 @@
         [Authorize]
         public IActionResult Events()
         {
-            return this.View();
+            var allEvents = new AllEventsViewModel
+            {
+                Events = this.eventService.GetAll(),
+            };
+
+            return this.View(allEvents);
         }
 
         [Authorize]
@@ -35,7 +41,7 @@
                 return this.View();
             }
 
-            //this.eventService.CreateAsync(input);
+            this.eventService.CreateAsync(input);
 
             return this.RedirectToAction(nameof(Events));
         }

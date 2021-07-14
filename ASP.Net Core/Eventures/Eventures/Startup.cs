@@ -1,6 +1,7 @@
 namespace Eventures
 {
     using Eventures.Data;
+    using Eventures.Infrastructure;
     using Eventures.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,7 @@ namespace Eventures
 
             services.AddDefaultIdentity<IdentityUser>(options => 
             {
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequiredUniqueChars = 0; 
@@ -39,6 +40,7 @@ namespace Eventures
                 options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<EventuresDbContext>();
+
             services.AddControllersWithViews();
 
             services.AddTransient<IEventService, EventService>();
@@ -46,6 +48,8 @@ namespace Eventures
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
