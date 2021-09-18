@@ -1,51 +1,63 @@
-//Exercise: Syntax, Functions and Statements
-// 1.) 
+//1.	Fruit
 
-function buyFruirs(fruit, weight, price){
-    let money = (weight / 1000) * price;
-    console.log(`I need $${money.toFixed(2)} to buy ${(weight/ 1000).toFixed(2)} kilograms ${fruit}.`);
+function calculatePrice(fruit, weight, price){
+    let weightInKg = weight / 1000;
+    let money = price * weightInKg;
+    console.log(`I need $${money.toFixed(2)} to buy ${weightInKg.toFixed(2)} kilograms ${fruit}.`);
 }
 
-buyFruirs('orange', 2500, 1.80);
+//calculatePrice('apple', 1563, 2.35);
 
-// 2.) 
+//2.	Greatest Common Divisor - GCD
 
-function greatestCommenDevisor(firstNum, secondNum){
-    let smallestNum = firstNum > secondNum ? secondNum : firstNum;
-    let greatestDevisor = 1;
-    for (let i = 1; i <= smallestNum; i++) {
-        if(firstNum % i == 0 && secondNum % i == 0){
-            greatestDevisor = i;
-        }
+function gcd(firstNumber, secondNumber){
+    while(secondNumber != 0){
+        const temp = secondNumber;
+        secondNumber = firstNumber % secondNumber;
+        firstNumber = temp;
     }
-    console.log(greatestDevisor);
+
+    console.log(firstNumber);
 }
 
-greatestCommenDevisor(2154, 458);
+//gcd(15, 5);
 
-// 3.)
+//3.	Same Numbers
 
-function sameDigits(input) {
-    input = String(input); 
-    let result = true;
+function sameNums(number){
+    let numberAsStr = number.toString();
+    let isSame = true;
     let sum = 0;
- 
-    let firstDigit = input[0];
-    for (let i = 0; i < input.length; i++) {
-        sum += +input[i];
- 
-        if (input[i] !== firstDigit) {
-            result = false;
+
+    for(let i = 0; i < numberAsStr.length; i++){
+        if(numberAsStr[i] != numberAsStr[i + 1] 
+            && i != numberAsStr.length - 1){
+            isSame = false;
         }
+        
+        sum += Number(numberAsStr[i]);
     }
- 
-    console.log(result);
+
+    console.log(isTrue);
     console.log(sum);
 }
 
-sameDigits('22222222')
+//sameNums(1234);
 
-// 4.)
+//4.	Previous Day
+
+function getPreviousDay(year, month, day){
+    let dateAsStr = `${year}-${month}-${day}`;
+    let date = new Date(dateAsStr);
+    date.setDate(day - 1);
+
+    console.log(`${date.getFullYear()}-${Number(date.getMonth() + 1)}-${date.getDate()}`);
+}
+
+//getPreviousDay(2016, 9, 30);
+//getPreviousDay(2016, 10, 1);
+
+//5.	Time to Walk
 
 function timeToWalk(steps, footprint , speed){
     let distance = steps * footprint;
@@ -63,21 +75,10 @@ function timeToWalk(steps, footprint , speed){
     console.log(`${hours}:${minutes}:${seconds.toFixed(0)}`)
 }
 
-timeToWalk(2564, 0.70, 5.5)
-
-// 5.)
+//6.	Road Radar
 
 function roadRader(speed, zone){
-    let limitDifference = 0;
     let zoneSpeedLimit = 0;
-
-    switch(zone){
-        case 'motorway': limitDifference = speed < 130 ? 0 : (speed - 130); break;
-        case 'interstate': limitDifference = speed < 90 ? 0 : (speed - 90);; break;
-        case 'city': limitDifference = speed < 50 ? 0 : (speed - 50); break;
-        case 'residential': limitDifference = speed < 20 ? 0 : (speed - 20); break;
-        default: return 'Invalide zone';
-    }
 
     switch(zone){
         case 'motorway': zoneSpeedLimit = 130; break;
@@ -87,59 +88,61 @@ function roadRader(speed, zone){
         default: return 'Invalide zone';
     }
 
+    let limitDifference = speed - zoneSpeedLimit;
+
     if(limitDifference <= 0){
         console.log(`Driving ${speed} km/h in a ${zoneSpeedLimit} zone`);
-    }
-    else{
+    }else{
         let status = '';
 
         if (limitDifference <= 20){
             status = 'speeding';
-        }
-        else if(limitDifference > 20 && limitDifference <= 40){
+        }else if(limitDifference > 20 && limitDifference <= 40){
             status = 'excessive speeding';
-        }
-        else{
+        }else{
             status = 'reckless driving';
         }
 
         console.log(`The speed is ${limitDifference} km/h faster than the allowed speed of ${zoneSpeedLimit} - ${status}`);
     }
-
 }
 
-roadRader(200, 'motorway');
+//roadRader(40, 'city')
+//roadRader(21, 'residential')
+//roadRader(120, 'interstate')
+//roadRader(200, 'motorway')
 
-// 6.)
+//7.	Cooking by Numbers
 
-function cookingByNumbers(number, command1, command2, command3, command4, command5){
-    let num = Number(number);
-    let commands = [command1, command2, command3, command4, command5];
-    commands.forEach(element => {
-        switch(element){
-            case 'dice': num = Math.sqrt(num); break;
-            case 'spice': num += 1; break;
-            case 'chop': num /= 2; break;
-            case 'bake': num *= 3; break;
-            case 'fillet': num *= 0.8; break;
-            default: return 'Invalid command!'
+function cooking(number, firstCommand, secondCommand, thirdCommand, fourthCommand, fifthCommand){
+    let result = Number(number);
+    const commands = [firstCommand, secondCommand, thirdCommand, fourthCommand, fifthCommand];
+
+    commands.forEach(cmd => {
+        switch(cmd){
+            case 'dice': result = Math.sqrt(result); break;
+            case 'spice': result += 1; break;
+            case 'chop': result /= 2; break;
+            case 'bake': result *= 3; break;
+            case 'fillet': result *= 0.8; break;
+            default: return 'Invalid command!';
         }
 
-        console.log(num);
+        console.log(result);
     });
-   
 }
 
-cookingByNumbers('32', 'chop', 'chop', 'chop', 'chop', 'chop');
+//cooking('32', 'chop', 'chop', 'chop', 'chop', 'chop')
+//cooking('9', 'dice', 'spice', 'chop', 'bake', 'fillet')
 
 
-// 7.)
+//8.	Validity Checker
 
-function solve(arr) {
-    let x1 = Number(arr[0]);
-    let y1 = Number(arr[1]);
-    let x2 = Number(arr[2]);
-    let y2 = Number(arr[3]);
+function solve(firstArr, secondArr, thirdArr, fourtgArr) {
+    let x1 = Number(firstArr);
+    let y1 = Number(secondArr);
+    let x2 = Number(thirdArr);
+    let y2 = Number(fourtgArr);
  
     function distance(x1, y1, x2, y2) {
         let distH = x1 - x2;
@@ -166,9 +169,10 @@ function solve(arr) {
     }
 }
 
-solve([2, 1, 1, 1])
+//solve(2, 1, 1, 1)
+//solve(3, 0, 0, 4)
 
-// 8.)
+//9.	*Words Uppercase
 
 function words(input){
     let result = input
@@ -179,4 +183,4 @@ function words(input){
     console.log(result.join(', '));
 }
 
-words('Hi, how are you?');
+//words('Hi, how are you?');

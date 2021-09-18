@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eventures.Data.Migrations
 {
     [DbContext(typeof(EventuresDbContext))]
-    [Migration("20210714091129_InitialCreate")]
+    [Migration("20210714121645_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,7 +18,7 @@ namespace Eventures.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Eventures.Data.Models.Event", b =>
@@ -38,8 +38,8 @@ namespace Eventures.Data.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("TicketPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TicketPrice")
+                        .HasColumnType("float");
 
                     b.Property<int>("Tickets")
                         .HasColumnType("int");
@@ -47,6 +47,21 @@ namespace Eventures.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("Eventures.Data.Models.Test", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

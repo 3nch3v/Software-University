@@ -9,10 +9,14 @@
     public class EventsController : Controller
     {
         private readonly IEventService eventService;
+        private readonly EventuresDbContext dbContext;
 
-        public EventsController(IEventService eventService)
+        public EventsController(
+            IEventService eventService, 
+            EventuresDbContext dbContext)
         {
             this.eventService = eventService;
+            this.dbContext = dbContext;
         }
 
         [Authorize]

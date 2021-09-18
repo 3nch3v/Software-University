@@ -6,7 +6,7 @@ namespace Eventures.Services
 {
     public interface IEventService
     {
-        Task CreateAsync(EventInputModel input);
+        void CreateAsync(EventInputModel input);
 
         ICollection<EventViewModel> GetAll();
     }

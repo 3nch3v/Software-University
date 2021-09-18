@@ -1,12 +1,13 @@
 ﻿namespace Eventures.Services
 {
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Collections.Generic;
 
     using Eventures.ViewModels;
     using Eventures.Data.Models;
     using Eventures.Data;
+    using System;
+    using System.Threading.Tasks;
 
     public class EventService : IEventService
     {
@@ -17,7 +18,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task CreateAsync(EventInputModel input)
+        public void CreateAsync(EventInputModel input)
         {
             Event newEvent = new()
             {
@@ -29,8 +30,8 @@
                 TicketPrice = input.TicketPrice,
             };
 
-            await this.dbContext.Events.AddAsync(newEvent);
-            await this.dbContext.SaveChangesAsync();
+            this.dbContext.Events.Add(newEvent);
+            this.dbContext.SaveChanges();
         }
 
         public ICollection<EventViewModel> GetAll()

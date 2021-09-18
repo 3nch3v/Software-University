@@ -60,11 +60,24 @@ namespace Eventures.Data.Migrations
                     Start = table.Column<DateTime>(type: "datetime2", nullable: false),
                     End = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Tickets = table.Column<int>(type: "int", nullable: false),
-                    TicketPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    TicketPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Events", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -232,6 +245,9 @@ namespace Eventures.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Tests");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

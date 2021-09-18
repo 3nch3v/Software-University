@@ -39,6 +39,8 @@ namespace Eventures
                 options.Password.RequiredUniqueChars = 0;
                 options.User.RequireUniqueEmail = true;
             })
+                .AddRoles<IdentityRole>()
+                .AddUserManager<UserManager<IdentityUser>>()
                 .AddEntityFrameworkStores<EventuresDbContext>();
 
             services.AddControllersWithViews();
