@@ -36,7 +36,7 @@ function solve() {
                  tbody.appendChild(tr);
             }
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
 
@@ -90,7 +90,7 @@ function solve() {
                 formTitle.textContent = 'FORM';
             }
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
 
@@ -106,7 +106,7 @@ function solve() {
             formTitle.id = bookId;
             
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
 
@@ -135,7 +135,7 @@ function solve() {
             await loadBooks();
 
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
 

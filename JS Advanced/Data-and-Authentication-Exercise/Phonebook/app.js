@@ -23,7 +23,7 @@ async function attachEvents() {
                 phonebookUl.appendChild(li);
             }
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
     
@@ -42,7 +42,7 @@ async function attachEvents() {
             phonebookUl.removeChild(phone)
 
         } catch(error) {
-            console.log(error)
+            console.log(error.message)
         }
     }
 
@@ -81,7 +81,7 @@ async function attachEvents() {
             phoneInput.value = '';
 
         } catch(error){
-            console.log(error)
+            console.log(error.message)
         }
     }
 

@@ -47,7 +47,7 @@ function solve() {
             form.reset();
 
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
 
@@ -73,7 +73,7 @@ function solve() {
                 tableBody.appendChild(tr);
             }
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }
     }
 

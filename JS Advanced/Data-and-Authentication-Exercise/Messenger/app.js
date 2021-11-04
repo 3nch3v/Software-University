@@ -41,7 +41,7 @@ function attachEvents() {
             msgText.value = '';
 
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }     
     }
 
@@ -65,7 +65,7 @@ function attachEvents() {
             messages.textContent = output.join('\n');
 
         } catch(error) {
-            console.log(error);
+            console.log(error.message);
         }       
     }
 }
